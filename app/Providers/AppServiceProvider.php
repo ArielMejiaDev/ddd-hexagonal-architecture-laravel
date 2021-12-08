@@ -13,7 +13,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->when(\Src\GestionExample\User\Application\GetUserByCriteriaUseCase::class)
+            ->needs(\Src\GestionExample\User\Domain\Contracts\UserRepositoryContract::class)
+            ->give(\Src\GestionExample\User\Infrastructure\Repositories\Eloquent\UserRepository::class);
     }
 
     /**

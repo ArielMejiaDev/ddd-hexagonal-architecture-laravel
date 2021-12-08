@@ -6,13 +6,13 @@ namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Src\GestionExample\User\Infrastructure\GetAllUsersController;
+use Src\GestionExample\User\Infrastructure\GetUserByCriteriaController;
 
 final class IndexController extends Controller
 {
     private $controller;
 
-    public function __construct(GetAllUsersController $getAllUsersController)
+    public function __construct(GetUserByCriteriaController $getAllUsersController)
     {
         $this->controller = $getAllUsersController;
     }

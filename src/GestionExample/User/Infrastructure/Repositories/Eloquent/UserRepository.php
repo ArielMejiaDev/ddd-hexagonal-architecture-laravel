@@ -12,8 +12,8 @@ use Src\GestionExample\User\Domain\User;
 
 final class UserRepository implements UserRepositoryContract
 {
-    public function getAll()
+    public function getUserByCriteria(): ?User
     {
-        
+        return null;
     }
 }
