@@ -21,9 +21,10 @@ final class ShowController extends Controller
     {
         $user = $this->controller->__invoke($request, $id);
         return response()->json([
-            $user->name()->value(),
-            $user->email()->value(),
-            $user->city()->value()
+            "name" => $user->name()->value(),
+            "email" => $user->email()->value(),
+            "city" => $user->city()->value(),
+            "type repository" => $user->type()
         ]);
     }
 }

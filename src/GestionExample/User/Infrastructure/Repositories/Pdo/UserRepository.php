@@ -24,6 +24,7 @@ final class UserRepository implements UserRepositoryContract
             new UserName($user->name),
             new UserEmail($user->email),
             new UserCity($user->city),
+            'CON PDO'
         );
     }
 }
