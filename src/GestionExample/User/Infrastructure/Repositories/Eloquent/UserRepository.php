@@ -18,16 +18,10 @@ final class UserRepository implements UserRepositoryContract
     { 
         $userId = new UserId($id);
         $user = UserModel::find($userId->value());
-        $response = new User(
+        return new User(
             new UserName($user->name),
             new UserEmail($user->email),
             new UserCity($user->city),
         );
-        return $response;
-        /*return new User(
-            new UserName($user->name),
-            new UserEmail($user->email),
-            new UserCity($user->city),
-        );*/
     }
 }

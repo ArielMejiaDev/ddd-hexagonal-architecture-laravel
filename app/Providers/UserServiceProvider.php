@@ -15,7 +15,7 @@ class UserServiceProvider extends ServiceProvider
     {
         $this->app->when(\Src\GestionExample\User\Application\GetUserUseCase::class)
             ->needs(\Src\GestionExample\User\Domain\Contracts\UserRepositoryContract::class)
-            ->give(\Src\GestionExample\User\Infrastructure\Repositories\Eloquent\UserRepository::class);
+            ->give(\Src\GestionExample\User\Infrastructure\Repositories\Pdo\UserRepository::class);
     }
 
     /**

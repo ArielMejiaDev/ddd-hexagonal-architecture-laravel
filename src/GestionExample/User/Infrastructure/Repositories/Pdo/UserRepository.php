@@ -9,15 +9,21 @@ use Src\GestionExample\User\Domain\ValueObjects\{
     UserCity
 };
 use Src\GestionExample\User\Domain\User;
+use Illuminate\Support\Facades\DB;
 
 final class UserRepository implements UserRepositoryContract
 {
-    public function getUserByCriteria(): ?array
+    public function getUser(int $id): ?User
     {
-        $pdo = \Illuminate\Support\Facades\DB::getPdo();
-        $query = $pdo->prepare("SELECT * FROM example");
+        $pdo = DB::getPdo();
+        $query = $pdo->prepare("SELECT * FROM users WHERE id = :id");
+        $query->bindParam(':id', $id);
         $query->execute();
-        $users=$query->fetchAll(\PDO::FETCH_OBJ);
-        return [$users, "Con PDO"];
+        $user = $query->fetch(\PDO::FETCH_OBJ);
+        return new User(
+            new UserName($user->name),
+            new UserEmail($user->email),
+            new UserCity($user->city),
+        );
     }
 }
