@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\Users\IndexController;
+use App\Http\Controllers\Users\ShowController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,10 +19,4 @@ Route::get('/', function () {
     echo phpinfo();
 });
 
-Route::get('/users', IndexController::class);
-
-Route::get('check', function () {
-    $pdo = \Illuminate\Support\Facades\DB::table('example')->get();
-
-    dd($pdo);
-});
+Route::get('/users/{id}', ShowController::class);

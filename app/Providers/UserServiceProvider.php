@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class AppServiceProvider extends ServiceProvider
+class UserServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
@@ -13,7 +13,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->when(\Src\GestionExample\User\Application\GetUserUseCase::class)
+            ->needs(\Src\GestionExample\User\Domain\Contracts\UserRepositoryContract::class)
+            ->give(\Src\GestionExample\User\Infrastructure\Repositories\Eloquent\UserRepository::class);
     }
 
     /**

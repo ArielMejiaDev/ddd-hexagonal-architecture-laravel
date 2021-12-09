@@ -1,11 +1,13 @@
 <?php
 
+declare(sctrict_types=1);
+
 namespace Src\GestionExample\User\Application;
 use Src\GestionExample\User\Domain\Contracts\UserRepositoryContract;
+use Src\GestionExample\User\Domain\User;
 
-final class GetUserByCriteriaUseCase
+final class GetUserUseCase
 {
-
     private $repository;
 
     public function __construct(UserRepositoryContract $repository)
@@ -13,8 +15,8 @@ final class GetUserByCriteriaUseCase
         $this->repository = $repository;
     }
 
-    public function __invoke()
+    public function __invoke(int $id): User
     {
-        return $this->repository->getUserByCriteria();
+        return $this->repository->getUser($id);
     }
 }

@@ -6,19 +6,28 @@ use Src\GestionExample\User\Domain\Contracts\UserRepositoryContract;
 use Src\GestionExample\User\Domain\ValueObjects\{
     UserName,
     UserEmail,
-    UserCity
+    UserCity,
+    UserId
 };
 use Src\GestionExample\User\Domain\User;
 use App\Models\User as UserModel;
 
 final class UserRepository implements UserRepositoryContract
 {
-    public function getUserByCriteria(): ?array
-    {   
-        //dd(UserModel::all());
-        //$user = UserModel::all();
-        $user = \Illuminate\Support\Facades\DB::table('example')->get();
-        return [$user->toArray(), "Con eloquent"];
-        //return $user->toArray();
+    public function getUser(int $id): ?User
+    { 
+        $userId = new UserId($id);
+        $user = UserModel::find($userId->value());
+        $response = new User(
+            new UserName($user->name),
+            new UserEmail($user->email),
+            new UserCity($user->city),
+        );
+        return $response;
+        /*return new User(
+            new UserName($user->name),
+            new UserEmail($user->email),
+            new UserCity($user->city),
+        );*/
     }
 }
