@@ -9,11 +9,16 @@ use Src\GestionExample\User\Domain\ValueObjects\{
     UserCity
 };
 use Src\GestionExample\User\Domain\User;
+use App\Models\User as UserModel;
 
 final class UserRepository implements UserRepositoryContract
 {
-    public function getUserByCriteria(): ?User
-    {
-        return null;
+    public function getUserByCriteria(): ?array
+    {   
+        //dd(UserModel::all());
+        //$user = UserModel::all();
+        $user = \Illuminate\Support\Facades\DB::table('example')->get();
+        return [$user->toArray(), "Con eloquent"];
+        //return $user->toArray();
     }
 }

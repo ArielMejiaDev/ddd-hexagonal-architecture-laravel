@@ -5,5 +5,5 @@ use Src\GestionExample\User\Domain\User;
 
 interface UserRepositoryContract
 {
-    public function getUserByCriteria(): ?User;
+    public function getUserByCriteria(): ?array;
 }

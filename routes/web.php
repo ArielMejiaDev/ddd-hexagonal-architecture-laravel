@@ -20,3 +20,9 @@ Route::get('/', function () {
 });
 
 Route::get('/users', IndexController::class);
+
+Route::get('check', function () {
+    $pdo = \Illuminate\Support\Facades\DB::table('example')->get();
+
+    dd($pdo);
+});

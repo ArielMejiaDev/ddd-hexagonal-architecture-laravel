@@ -15,6 +15,6 @@ final class GetUserByCriteriaUseCase
 
     public function __invoke()
     {
-        return $this->repository;
+        return $this->repository->getUserByCriteria();
     }
 }
