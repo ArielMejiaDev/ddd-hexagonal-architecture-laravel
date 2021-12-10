@@ -4,9 +4,8 @@ declare(sctrict_types=1);
 
 namespace Src\GestionExample\User\Application;
 use Src\GestionExample\User\Domain\Contracts\UserRepositoryContract;
-use Src\GestionExample\User\Domain\User;
 
-final class GetUserUseCase
+final class GetAllUsersUseCase
 {
     private $repository;
 
@@ -15,8 +14,8 @@ final class GetUserUseCase
         $this->repository = $repository;
     }
 
-    public function __invoke(int $id): ?User
+    public function __invoke(): ?array
     {
-        return $this->repository->getUser($id);
+        return $this->repository->getAllUsers();
     }
 }

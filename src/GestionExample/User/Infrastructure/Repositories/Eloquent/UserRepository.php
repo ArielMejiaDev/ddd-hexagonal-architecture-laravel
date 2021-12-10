@@ -14,10 +14,33 @@ use App\Models\User as UserModel;
 
 final class UserRepository implements UserRepositoryContract
 {
+
+    private $model;
+
+    public function __construct()
+    {
+        $this->model = new UserModel;
+    }
+
+    public function getAllUsers(): ?array
+    {
+        $responseArrayFormat = [];
+        $users = $this->model->get();
+        foreach ($users as $user) {
+            array_push($responseArrayFormat, [
+                "name" => (new UserName($user->name))->value(),
+                "email" => (new UserEmail($user->email))->value(),
+                "city" => (new UserCity($user->city))->value(),
+                "type_repository" => "CON ELOQUENT"
+            ]);
+        }
+        return $responseArrayFormat;
+    }
+
     public function getUser(int $id): ?User
     { 
         $userId = new UserId($id);
-        $user = UserModel::find($userId->value());
+        $user = $this->model->find($userId->value());
         return new User(
             new UserName($user->name),
             new UserEmail($user->email),

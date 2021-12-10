@@ -2,7 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\Users\ShowController;
+use App\Http\Controllers\Users\{
+    IndexController,
+    ShowController
+};
 
 /*
 |--------------------------------------------------------------------------
@@ -19,4 +22,6 @@ Route::get('/', function () {
     echo phpinfo();
 });
 
+Route::get('/users', IndexController::class);
 Route::get('/users/{id}', ShowController::class);
+

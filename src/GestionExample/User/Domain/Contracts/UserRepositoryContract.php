@@ -5,5 +5,8 @@ use Src\GestionExample\User\Domain\User;
 
 interface UserRepositoryContract
 {
+
+    public function getAllUsers(): ?array;
+
     public function getUser(int $id): ?User;
 }

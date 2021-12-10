@@ -24,7 +24,7 @@ final class ShowController extends Controller
             "name" => $user->name()->value(),
             "email" => $user->email()->value(),
             "city" => $user->city()->value(),
-            "type repository" => $user->type()
+            "type_repository" => $user->type()
         ]);
     }
 }
